@@ -37,7 +37,7 @@ fun viewList(productList: List<ShoppingList>) {
     } else {
         println("Current shopping list:")
         productList.forEachIndexed { index, item ->
-            println("${index + 1}. ${item.productName} - Price: ${item.productPrice}/- Quantity: ${item.productDescription}")
+            println("${index + 1}. ${item.productName} - Price: ${item.productPrice}/- Descripto: ${item.productDescription}")
         }
     }
 }
@@ -63,13 +63,13 @@ fun addItem(productList: MutableList<ShoppingList>) {
 
 fun removeItem(productList: MutableList<ShoppingList>) {
     println("Enter The Product Name: ")
-    val nameOfRemovedProduct = readLine()?.uppercase() ?: ""
+    val removedProduct = readLine()?.uppercase() ?: ""
     var isProductRemoved = false
-    val updatedProductList = mutableListOf<ShoppingList>()
+    val updatedList = mutableListOf<ShoppingList>()
 
     productList.forEach { shoppingList ->
-        if (!shoppingList.productName.uppercase().contains(nameOfRemovedProduct)) {
-            updatedProductList.add(shoppingList)
+        if (!shoppingList.productName.uppercase().contains(removedProduct)) {
+            updatedList.add(shoppingList)
         } else {
             isProductRemoved = true
         }
@@ -80,7 +80,7 @@ fun removeItem(productList: MutableList<ShoppingList>) {
     } else {
         println("Product Is Removed From The Shopping List")
         productList.clear()
-        productList.addAll(updatedProductList)
+        productList.addAll(updatedList)
         viewList(productList)
     }
 }
